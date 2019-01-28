@@ -18,28 +18,48 @@ class TutorialHome extends StatelessWidget {
           tooltip: 'Navigation menu',
           onPressed: null,
         ),
-        title: Text('Example title'),
+        title: Text('Tactical Tic Tac Toe'),
         actions: <Widget>[
           MyButton(
 
-          ),
-          IconButton(
-            icon: Icon(Icons.airplanemode_active),
           ),
         ],
       ),
 
       // body is the majority of the screen.
-      body: Center(
-        child: Text('Hello, world!'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Add', // used by assistive technologies
-        child: Icon(Icons.add),
-        onPressed: null,
+      body: ListView(
+        children: <Widget>[
+          create_GUIBoard(),
+          Center(
+              child: Text("Play TACTICAL TIC TAC TOE",
+            style: Theme.of(context).textTheme.headline
+          )
+          )
+        ]
       ),
     );
   }
+
+}
+
+GridView create_GUIBoard() {
+  var board_list = List.generate(9, (index) {
+    return Center(
+      child: Text(
+        'Here comes board $index',
+      ),
+    );
+  }
+  );
+
+  var grid = GridView.count(
+      physics: ScrollPhysics(),
+      shrinkWrap: true,
+      crossAxisCount: 3,
+      children: board_list
+  );
+
+  return grid;
 }
 
 
@@ -56,13 +76,12 @@ class MyButton extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
-          color: Colors.lightGreen[500],
+          color: Colors.red[300],
         ),
         child: Center(
-          child: Text('Engage'),
+          child: Text('Restart'),
         ),
       ),
     );
   }
 }
-
