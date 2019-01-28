@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'Board.dart';
 
 void main() {
   runApp(MaterialApp(
     title: 'Flutter Tutorial',
-    home: MyApp(),
+    home: TutorialHome(),
   ));
 }
 
-class MyApp extends StatelessWidget {
+class TutorialHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Scaffold is a layout for the major Material Components.
@@ -19,19 +18,70 @@ class MyApp extends StatelessWidget {
           tooltip: 'Navigation menu',
           onPressed: null,
         ),
-        title: Text('Example title'),
+        title: Text('Tactical Tic Tac Toe'),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.airplanemode_active),
+          MyButton(
+
           ),
         ],
       ),
 
       // body is the majority of the screen.
-      body: Center(
-        child: Text('Hello, world!'),
-      )
+      body: ListView(
+        children: <Widget>[
+          create_GUIBoard(),
+          Center(
+              child: Text("Play TACTICAL TIC TAC TOE",
+            style: Theme.of(context).textTheme.headline
+          )
+          )
+        ]
+      ),
+    );
+  }
+
+}
+
+GridView create_GUIBoard() {
+  var board_list = List.generate(9, (index) {
+    return Center(
+      child: Text(
+        'Here comes board $index',
+      ),
+    );
+  }
+  );
+
+  var grid = GridView.count(
+      physics: ScrollPhysics(),
+      shrinkWrap: true,
+      crossAxisCount: 3,
+      children: board_list
+  );
+
+  return grid;
+}
+
+
+class MyButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        print('MyButton was tapped!');
+      },
+      child: Container(
+        height: 36.0,
+        padding: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          color: Colors.red[300],
+        ),
+        child: Center(
+          child: Text('Restart'),
+        ),
+      ),
     );
   }
 }
-
