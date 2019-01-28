@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Board.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -29,7 +30,7 @@ class TutorialHome extends StatelessWidget {
       // body is the majority of the screen.
       body: ListView(
         children: <Widget>[
-          create_GUIBoard(),
+          Board(),
           Center(
               child: Text("Play TACTICAL TIC TAC TOE",
             style: Theme.of(context).textTheme.headline
@@ -42,25 +43,6 @@ class TutorialHome extends StatelessWidget {
 
 }
 
-GridView create_GUIBoard() {
-  var board_list = List.generate(9, (index) {
-    return Center(
-      child: Text(
-        'Here comes board $index',
-      ),
-    );
-  }
-  );
-
-  var grid = GridView.count(
-      physics: ScrollPhysics(),
-      shrinkWrap: true,
-      crossAxisCount: 3,
-      children: board_list
-  );
-
-  return grid;
-}
 
 
 class MyButton extends StatelessWidget {

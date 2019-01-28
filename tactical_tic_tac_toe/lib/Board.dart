@@ -1,15 +1,28 @@
-class Board{
-  var boards = List<SubBoard>();
+import 'package:flutter/material.dart';
+
+class Board extends GridView{
+  var boards = List<Widget>();
+
 
   Board(){
     initBoard();
+    super.count(
+        physics: ScrollPhysics(),
+        shrinkWrap: true,
+        crossAxisCount: 3,
+        children: boards
+    );
+
   }
 
   void initBoard(){
     for(int i = 0; i < 9; i++){
-      boards.add(SubBoard());
+      var sub = SubBoard();
+      boards.add(sub.arrangeInGrid());
     }
   }
+
+
 }
 
 class SubBoard{
@@ -23,6 +36,15 @@ class SubBoard{
       fields.add(TicTac());
     }
   }
+
+  GridView arrangeInGrid(){
+  return GridView.count(
+      physics: ScrollPhysics(),
+      shrinkWrap: true,
+      crossAxisCount: 3,
+      children: fields
+  );
+  }
 }
 
 /**
@@ -30,7 +52,8 @@ class SubBoard{
  * If not changed change and return true,
  * else retunr false
  */
-class TicTac{
+class TicTac extends IconButton{
+  TicTac() : super(icon: Icon(Icons.menu), onPressed: null);
   String type;
 
   bool changeType(int type){
