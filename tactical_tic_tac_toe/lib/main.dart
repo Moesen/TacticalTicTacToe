@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'Board.dart';
 
 void main() {
   runApp(MaterialApp(
     title: 'Flutter Tutorial',
-    home: TutorialHome(),
+    home: MyApp(),
   ));
 }
 
-class TutorialHome extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Scaffold is a layout for the major Material Components.
@@ -20,9 +21,6 @@ class TutorialHome extends StatelessWidget {
         ),
         title: Text('Example title'),
         actions: <Widget>[
-          MyButton(
-
-          ),
           IconButton(
             icon: Icon(Icons.airplanemode_active),
           ),
@@ -32,36 +30,7 @@ class TutorialHome extends StatelessWidget {
       // body is the majority of the screen.
       body: Center(
         child: Text('Hello, world!'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Add', // used by assistive technologies
-        child: Icon(Icons.add),
-        onPressed: null,
-      ),
-    );
-  }
-}
-
-
-class MyButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        print('MyButton was tapped!');
-      },
-      child: Container(
-        height: 36.0,
-        padding: const EdgeInsets.all(8.0),
-        margin: const EdgeInsets.symmetric(horizontal: 8.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0),
-          color: Colors.lightGreen[500],
-        ),
-        child: Center(
-          child: Text('Engage'),
-        ),
-      ),
+      )
     );
   }
 }
