@@ -54,8 +54,8 @@ class SubBoard{
  * If not changed change and return true,
  * else retunr false
  */
-class TicTac extends IconButton{
-  TicTac() : super(icon: Icon(Icons.menu), onPressed: null);
+class TicTac extends StatefulWidget{
+  TicTac(){}
   String type;
 
   bool changeType(int type){
@@ -72,14 +72,18 @@ class TicTac extends IconButton{
     } else {
       return false;
     }
+
+    @override
+    Widget build(BuildContext buildcontext){
+      return MaterialButton(
+        disabledColor: Colors.red[400],
+        onPressed: null,
+        child: null,
+        color: Colors.blue,
+      )
+    };
   }
 
-  String getTicTac(){
-    switch (this.type){
-      case "cross": return this.type;
-      case "circle": return this.type;
-    }
-    return "empty";
-  }
+
 
 }
