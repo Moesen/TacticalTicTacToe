@@ -30,7 +30,7 @@ class TutorialHome extends StatelessWidget {
       // body is the majority of the screen.
       body: ListView(
         children: <Widget>[
-          Board(),
+          Text("Hey"),
           Center(
               child: Text("Play TACTICAL TIC TAC TOE",
             style: Theme.of(context).textTheme.headline

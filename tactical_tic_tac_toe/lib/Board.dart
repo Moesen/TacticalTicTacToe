@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Board extends GridView{
+class Board{
   var boards = List<Widget>();
 
-
-  Board(){
+  Board()
+  {
     initBoard();
-    super.count(
-        physics: ScrollPhysics(),
-        shrinkWrap: true,
-        crossAxisCount: 3,
-        children: boards
-    );
+      }
 
-  }
 
   void initBoard(){
     for(int i = 0; i < 9; i++){
@@ -22,6 +16,14 @@ class Board extends GridView{
     }
   }
 
+  GridView createGUI(){
+    return GridView.count(
+        physics: ScrollPhysics(),
+        shrinkWrap: true,
+        crossAxisCount: 3,
+        children: boards
+    );
+  }
 
 }
 
