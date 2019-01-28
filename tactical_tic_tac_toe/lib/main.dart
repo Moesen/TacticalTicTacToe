@@ -21,9 +21,6 @@ class TutorialHome extends StatelessWidget {
         ),
         title: Text('Tactical Tic Tac Toe'),
         actions: <Widget>[
-          MyButton(
-
-          ),
         ],
       ),
 

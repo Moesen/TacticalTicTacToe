@@ -29,6 +29,7 @@ class Board{
 
 class SubBoard{
   var fields = List<TicTac>();
+  TicTac state;
 
   SubBoard(){
     initSubBoard();
@@ -39,6 +40,8 @@ class SubBoard{
     }
   }
 
+
+
   GridView arrangeInGrid(){
   return GridView.count(
       physics: ScrollPhysics(),
@@ -47,6 +50,20 @@ class SubBoard{
       children: fields
   );
   }
+
+  void checkWin(){
+    bool won = false;
+
+    if(won){
+      _changeState()
+    }
+
+  }
+
+  void _changeState(String type){
+
+  }
+
 }
 
 /**
