@@ -6,7 +6,7 @@ class Board{
   Board()
   {
     initBoard();
-      }
+  }
 
 
   void initBoard(){
@@ -16,14 +16,6 @@ class Board{
     }
   }
 
-  GridView createGUI(){
-    return GridView.count(
-        physics: ScrollPhysics(),
-        shrinkWrap: true,
-        crossAxisCount: 3,
-        children: boards
-    );
-  }
 
 }
 
@@ -40,30 +32,6 @@ class SubBoard{
     }
   }
 
-
-
-  GridView arrangeInGrid(){
-  return GridView.count(
-      physics: ScrollPhysics(),
-      shrinkWrap: true,
-      crossAxisCount: 3,
-      children: fields
-  );
-  }
-
-  void checkWin(){
-    bool won = false;
-
-    if(won){
-      _changeState()
-    }
-
-  }
-
-  void _changeState(String type){
-
-  }
-
 }
 
 /**
@@ -71,10 +39,14 @@ class SubBoard{
  * If not changed change and return true,
  * else retunr false
  */
-class TicTac extends StatefulWidget{
-  TicTac(){}
+class TicTac {
+  //Field
   String type;
 
+  //Constructor
+  TicTac(){}
+
+  //Methods
   bool changeType(int type){
     if(type != null) {
       switch (type) {
@@ -89,16 +61,6 @@ class TicTac extends StatefulWidget{
     } else {
       return false;
     }
-
-    @override
-    Widget build(BuildContext buildcontext){
-      return MaterialButton(
-        disabledColor: Colors.red[400],
-        onPressed: null,
-        child: null,
-        color: Colors.blue,
-      )
-    };
   }
 
 
