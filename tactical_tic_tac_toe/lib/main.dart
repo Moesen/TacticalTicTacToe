@@ -11,6 +11,7 @@ void main() {
 class TutorialHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var board = Board();
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +28,7 @@ class TutorialHome extends StatelessWidget {
       // body is the majority of the screen.
       body: ListView(
         children: <Widget>[
-          Text("Hey"),
+          board.createGUI(),
           Center(
               child: Text("Play TACTICAL TIC TAC TOE",
             style: Theme.of(context).textTheme.headline
