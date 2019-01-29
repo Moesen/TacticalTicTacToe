@@ -25,29 +25,3 @@ class TutorialHome extends StatelessWidget {
 }
 
 
-class TicTacWidget extends StatefulWidget {
-  @override
-  _TicTacWidgetState createState() => _TicTacWidgetState();
-}
-
-class _TicTacWidgetState extends State<TicTacWidget> {
-  bool _isNull = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(Icons.close),
-      color: Colors.red[10],
-      onPressed: _toggleIsNull,
-    );
-  }
-
-  void _toggleIsNull(){
-    setState(() {
-      if(_isNull) _isNull = false;
-      else _isNull = true;
-    });
-
-  }
-
-}
