@@ -2,19 +2,33 @@ import 'package:flutter/material.dart';
 
 class Board{
   var boards = List<Widget>();
-  int allowed_board_idx; //the board that the player is allowed to choose. Null for all boards
-
+  var logic = Logic();
   Board();
 
 }
 
 class Logic{
-  int nextBoard;
+  static int nextBoard; //the board that the player is allowed to choose. Null for all boards
+  static String turn = "cross";
 
+  Logic();
+
+  void changeTurn(next) {
+    nextBoard = next;
+
+    if (turn == "cross") turn = "circle";
+    else turn = "cross";
+  }
+
+  int getNextBoard(){return nextBoard;}
+
+  String getTurn(){return turn;}
 }
 
 class SubBoard{
   var fields;
+  var logic = Logic();
+
   TicTac state;
   int pos;
 
@@ -22,9 +36,10 @@ class SubBoard{
     this.pos = pos;
     initSubBoard();
   }
+
   void initSubBoard(){
     for(int i = 0; i < 9; i++){
-      fields.add(TicTac());
+      fields.add(TicTac(i, this.pos));
     }
   }
 
@@ -33,10 +48,14 @@ class SubBoard{
 class TicTac extends StatefulWidget {
   int pos;
   int superPos;
-  TicTac(int superPos, int pos){
+
+  TicTac(pos, superPos){
     this.pos = pos;
     this.superPos = superPos;
   }
+
+
+
 
   @override
   _TicTacWidgetState createState() => _TicTacWidgetState();
@@ -44,6 +63,12 @@ class TicTac extends StatefulWidget {
 
 class _TicTacWidgetState extends State<TicTac> {
   String type;
+
+  var logic = Logic();
+
+  set pos(int val) => setState(() => pos = val);
+  set superPos(int val) => setState(() => superPos = val);
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,16 +79,16 @@ class _TicTacWidgetState extends State<TicTac> {
     );
   }
 
-  void _toggleIsNull(){
+
+
+  void onPressingMethodCallActionDoingOfThings123() {
     setState(() {
-      if(_isNull) _isNull = false;
-      else _isNull = true;
+      if (type == null && pos == logic.getNextBoard()) {
+        //If it is empty and this is the current subboard
+
+        logic.changeTurn(superPos); //Changes turn
+        type = logic.getTurn();
+      }
     });
-  }
-
-  void onPressingMethodCallActionDoingOfThings123(){
-    if (type == null && superPos == nextBoardPos){
-
-    }
   }
 }
