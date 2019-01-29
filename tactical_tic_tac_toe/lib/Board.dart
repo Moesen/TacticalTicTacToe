@@ -86,11 +86,15 @@ class _TicTacWidgetState extends State<TicTac> {
 
   @override
   Widget build(BuildContext context) {
+    return buildAButton();
+  }
+
+  MaterialButton buildAButton(){
     return MaterialButton(
-      shape: ,
-      color: Colors.red,
       splashColor: Colors.blue,
       onPressed: onPressingMethodCallActionDoingOfThings123,
+      color: Colors.deepOrange[200],
+
     );
   }
 
@@ -98,23 +102,15 @@ class _TicTacWidgetState extends State<TicTac> {
 
   void onPressingMethodCallActionDoingOfThings123() {
     setState(() {
-      print(pos.toString() + ", " + superPos.toString());
-
       if (type == null && (superPos == logic.getNextBoard() || logic.getNextBoard() == -1)) {
         //If it is empty and this is the current subboard
-        print("neger");
         logic.changeTurn(pos); //Changes turn
         type = logic.getTurn();
         myIcon = (type == "cross" ? Icon(Icons.close) : Icon(Icons.blur_circular));
       }
     });
   }
-
-  CircleBorder getBorder(){
-
-  }
 }
-
 class Logic{
   static int nextBoard = -1;//the board that the player is allowed to choose. Null for all boards
   static String turn = "cross";
@@ -131,7 +127,6 @@ class Logic{
   }
 
   int getNextBoard(){
-    print("this is next: " + nextBoard.toString());
     return nextBoard;
   }
 
