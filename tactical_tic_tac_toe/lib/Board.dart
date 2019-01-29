@@ -48,6 +48,7 @@ class SubBoard{
       children: fields,
       shrinkWrap: true,
       physics: ScrollPhysics(),
+      padding: EdgeInsets.all(10),
     );
   }
 
@@ -65,7 +66,7 @@ class TicTac extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return new _TicTacWidgetState(this.superPos, this.pos);
+    return new _TicTacWidgetState(this.pos, this.superPos);
   }
 }
 
@@ -76,6 +77,7 @@ class _TicTacWidgetState extends State<TicTac> {
   int superPos;
 
   var logic = Logic();
+  var myIcon;
 
   _TicTacWidgetState(pos, superPos){
     this.pos = pos;
@@ -85,7 +87,7 @@ class _TicTacWidgetState extends State<TicTac> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.close),
+      icon: ( (myIcon == null) ? Icon(Icons.remove_circle) : myIcon),
       color: Colors.red,
       onPressed: onPressingMethodCallActionDoingOfThings123,
     );
@@ -95,31 +97,38 @@ class _TicTacWidgetState extends State<TicTac> {
 
   void onPressingMethodCallActionDoingOfThings123() {
     setState(() {
-      if (type == null && pos == logic.getNextBoard()) {
+      print(pos.toString() + ", " + superPos.toString());
+
+      if (type == null && (superPos == logic.getNextBoard() || logic.getNextBoard() == -1)) {
         //If it is empty and this is the current subboard
-        logic.changeTurn(superPos); //Changes turn
+        print("neger");
+        logic.changeTurn(pos); //Changes turn
         type = logic.getTurn();
+        myIcon = (type == "cross" ? Icon(Icons.close) : Icon(Icons.blur_circular));
       }
     });
   }
 }
 
 class Logic{
-  static int nextBoard; //the board that the player is allowed to choose. Null for all boards
+  static int nextBoard = -1;//the board that the player is allowed to choose. Null for all boards
   static String turn = "cross";
 
   Logic();
 
 
 
-  void changeTurn(next) {
+  void changeTurn(int next) {
     nextBoard = next;
 
     if (turn == "cross") turn = "circle";
     else turn = "cross";
   }
 
-  int getNextBoard(){return nextBoard;}
+  int getNextBoard(){
+    print("this is next: " + nextBoard.toString());
+    return nextBoard;
+  }
 
   String getTurn(){return turn;}
 }
