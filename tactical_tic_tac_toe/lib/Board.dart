@@ -3,27 +3,23 @@ import 'package:flutter/material.dart';
 class Board{
   var boards = List<Widget>();
   int allowed_board_idx; //the board that the player is allowed to choose. Null for all boards
-  Board()
-  {
-    initBoard();
-  }
 
+  Board();
 
-  void initBoard(){
-    for(int i = 0; i < 9; i++){
-      var sub = SubBoard();
-      boards.add(sub);
-    }
-  }
+}
 
+class Logic{
+  int nextBoard;
 
 }
 
 class SubBoard{
-  var fields = List<TicTac>();
+  var fields;
   TicTac state;
+  int pos;
 
-  SubBoard(){
+  SubBoard(int pos){
+    this.pos = pos;
     initSubBoard();
   }
   void initSubBoard(){
@@ -34,8 +30,14 @@ class SubBoard{
 
 }
 
-
 class TicTac extends StatefulWidget {
+  int pos;
+  int superPos;
+  TicTac(int superPos, int pos){
+    this.pos = pos;
+    this.superPos = superPos;
+  }
+
   @override
   _TicTacWidgetState createState() => _TicTacWidgetState();
 }
@@ -60,3 +62,4 @@ class _TicTacWidgetState extends State<TicTac> {
   }
 
 }
+
