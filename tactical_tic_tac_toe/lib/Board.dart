@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Board{
-  var boards = List<SubBoard>();
-
+  var boards = List<Widget>();
+  int allowed_board_idx; //the board that the player is allowed to choose. Null for all boards
   Board()
   {
     initBoard();
