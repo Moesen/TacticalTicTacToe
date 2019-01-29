@@ -9,6 +9,7 @@ void main() {
 }
 
 class TutorialHome extends StatelessWidget {
+  var board = Board();
   @override
   Widget build(BuildContext context) {
     // Scaffold is a layout for the major Material Components.
@@ -18,7 +19,7 @@ class TutorialHome extends StatelessWidget {
           shrinkWrap: true,
           crossAxisCount: 9,
           children:
-            List.generate(81, (i) => TicTac()),
+            List.generate(81, (i) => TicTac(i, i)),
       ),
     );
   }

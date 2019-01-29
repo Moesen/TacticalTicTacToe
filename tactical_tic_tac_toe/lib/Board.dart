@@ -58,23 +58,29 @@ class TicTac extends StatefulWidget {
 
 
   @override
-  _TicTacWidgetState createState() => _TicTacWidgetState();
+  State<StatefulWidget> createState() {
+    return new _TicTacWidgetState(this.superPos, this.pos);
+  }
 }
 
 class _TicTacWidgetState extends State<TicTac> {
   String type;
 
+  int pos;
+  int superPos;
+
   var logic = Logic();
 
-  set pos(int val) => setState(() => pos = val);
-  set superPos(int val) => setState(() => superPos = val);
-
+  _TicTacWidgetState(pos, superPos){
+    this.pos = pos;
+    this.superPos = superPos;
+  }
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.close),
-      color: Colors.red[10],
+      color: Colors.red,
       onPressed: onPressingMethodCallActionDoingOfThings123,
     );
   }
@@ -85,7 +91,6 @@ class _TicTacWidgetState extends State<TicTac> {
     setState(() {
       if (type == null && pos == logic.getNextBoard()) {
         //If it is empty and this is the current subboard
-
         logic.changeTurn(superPos); //Changes turn
         type = logic.getTurn();
       }
