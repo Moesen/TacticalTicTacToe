@@ -18,7 +18,7 @@ class TutorialHome extends StatelessWidget {
           shrinkWrap: true,
           crossAxisCount: 9,
           children:
-            List.generate(81, (i) => TicTacWidget()),
+            List.generate(81, (i) => TicTac()),
       ),
     );
   }
