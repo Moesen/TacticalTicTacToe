@@ -56,8 +56,10 @@ class _TicTacWidgetState extends State<TicTac> {
 
   void _toggleIsNull(){
     setState(() {
-      if(_isNull) _isNull = false;
-      else _isNull = true;
+      if (_isNull)
+        _isNull = false;
+      else
+        _isNull = true;
     });
   }
 
