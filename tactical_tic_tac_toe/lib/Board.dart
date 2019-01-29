@@ -1,34 +1,31 @@
 import 'package:flutter/material.dart';
 
 class Board{
-  var boards = List<Widget>();
+  var boards = List<SubBoard>();
   var logic = Logic();
-  Board();
-
-}
-
-class Logic{
-  static int nextBoard; //the board that the player is allowed to choose. Null for all boards
-  static String turn = "cross";
-
-  Logic();
-
-
-
-  void changeTurn(next) {
-    nextBoard = next;
-
-    if (turn == "cross") turn = "circle";
-    else turn = "cross";
+  Board(){
+    initBoard();
   }
 
-  int getNextBoard(){return nextBoard;}
+  void initBoard(){
+    for(int i = 0; i < 9; i++){
+      boards.add(SubBoard(i));
+    }
+  }
 
-  String getTurn(){return turn;}
+  GridView getBoard(){
+    return GridView.count(
+      crossAxisCount: 3,
+      children: List.generate(9, (i) => boards[i].getTicTacs()),
+      shrinkWrap: true,
+      physics: ScrollPhysics(),
+    );
+  }
+
 }
 
 class SubBoard{
-  var fields;
+  var fields = List<TicTac>();
   var logic = Logic();
 
   TicTac state;
@@ -45,7 +42,17 @@ class SubBoard{
     }
   }
 
+  GridView getTicTacs(){
+    return GridView.count(
+      crossAxisCount: 3,
+      children: fields,
+      shrinkWrap: true,
+      physics: ScrollPhysics(),
+    );
+  }
+
 }
+
 
 class TicTac extends StatefulWidget {
   int pos;
@@ -55,9 +62,6 @@ class TicTac extends StatefulWidget {
     this.pos = pos;
     this.superPos = superPos;
   }
-
-
-
 
   @override
   State<StatefulWidget> createState() {
@@ -98,4 +102,24 @@ class _TicTacWidgetState extends State<TicTac> {
       }
     });
   }
+}
+
+class Logic{
+  static int nextBoard; //the board that the player is allowed to choose. Null for all boards
+  static String turn = "cross";
+
+  Logic();
+
+
+
+  void changeTurn(next) {
+    nextBoard = next;
+
+    if (turn == "cross") turn = "circle";
+    else turn = "cross";
+  }
+
+  int getNextBoard(){return nextBoard;}
+
+  String getTurn(){return turn;}
 }

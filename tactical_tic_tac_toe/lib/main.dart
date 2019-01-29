@@ -14,13 +14,7 @@ class TutorialHome extends StatelessWidget {
   Widget build(BuildContext context) {
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
-      body: GridView.count(
-          physics: ScrollPhysics(),
-          shrinkWrap: true,
-          crossAxisCount: 9,
-          children:
-            List.generate(81, (i) => TicTac(i, i)),
-      ),
+      body: board.getBoard(),
     );
   }
 }
