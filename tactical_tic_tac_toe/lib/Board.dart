@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Board{
+  String turn = "cross";
   var boards = List<Widget>();
   int allowed_board_idx; //the board that the player is allowed to choose. Null for all boards
+
   Board()
   {
     initBoard();
@@ -41,14 +43,14 @@ class TicTac extends StatefulWidget {
 }
 
 class _TicTacWidgetState extends State<TicTac> {
-  bool _isNull = true;
+  String type;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.close),
       color: Colors.red[10],
-      onPressed: _toggleIsNull,
+      onPressed: onPressingMethodCallActionDoingOfThings123,
     );
   }
 
@@ -59,4 +61,9 @@ class _TicTacWidgetState extends State<TicTac> {
     });
   }
 
+  void onPressingMethodCallActionDoingOfThings123(){
+    if (type == null && superPos == nextBoardPos){
+
+    }
+  }
 }
