@@ -36,7 +36,7 @@ class _TicTacWidgetState extends State<TicTacWidget> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: ,
+      icon: Icon(Icons.close),
       color: Colors.red[10],
       onPressed: _toggleIsNull,
     );
