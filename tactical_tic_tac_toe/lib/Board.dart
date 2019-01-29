@@ -13,6 +13,8 @@ class Logic{
 
   Logic();
 
+
+
   void changeTurn(next) {
     nextBoard = next;
 
