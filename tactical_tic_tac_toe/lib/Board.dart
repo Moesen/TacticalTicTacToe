@@ -86,9 +86,10 @@ class _TicTacWidgetState extends State<TicTac> {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: ( (myIcon == null) ? Icon(Icons.remove_circle) : myIcon),
+    return MaterialButton(
+      shape: ,
       color: Colors.red,
+      splashColor: Colors.blue,
       onPressed: onPressingMethodCallActionDoingOfThings123,
     );
   }
@@ -107,6 +108,10 @@ class _TicTacWidgetState extends State<TicTac> {
         myIcon = (type == "cross" ? Icon(Icons.close) : Icon(Icons.blur_circular));
       }
     });
+  }
+
+  CircleBorder getBorder(){
+
   }
 }
 
@@ -132,3 +137,4 @@ class Logic{
 
   String getTurn(){return turn;}
 }
+
