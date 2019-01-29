@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Board{
-  var boards = List<Widget>();
+  var boards = List<SubBoard>();
 
   Board()
   {
@@ -12,7 +12,7 @@ class Board{
   void initBoard(){
     for(int i = 0; i < 9; i++){
       var sub = SubBoard();
-      boards.add(sub.arrangeInGrid());
+      boards.add(sub);
     }
   }
 
@@ -34,34 +34,8 @@ class SubBoard{
 
 }
 
-/**
- * Use this to change the type.
- * If not changed change and return true,
- * else retunr false
- */
-class TicTac {
-  //Field
-  String type;
+class TicTac{
 
-  //Constructor
-  TicTac(){}
-
-  //Methods
-  bool changeType(int type){
-    if(type != null) {
-      switch (type) {
-        case 0:
-          this.type = "cross";
-          break;
-        case 1:
-          this.type = "circle";
-          break;
-      }
-      return true;
-    } else {
-      return false;
-    }
-  }
 
 
 

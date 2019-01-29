@@ -11,57 +11,43 @@ void main() {
 class TutorialHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var board = Board();
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          tooltip: 'Navigation menu',
-          onPressed: null,
-        ),
-        title: Text('Tactical Tic Tac Toe'),
-        actions: <Widget>[
-        ],
-      ),
-
-      // body is the majority of the screen.
-      body: ListView(
-        children: <Widget>[
-          board.createGUI(),
-          Center(
-              child: Text("Play TACTICAL TIC TAC TOE",
-            style: Theme.of(context).textTheme.headline
-          )
-          )
-        ]
+      body: GridView.count(
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+          crossAxisCount: 9,
+          children:
+            List.generate(81, (i) => TicTacWidget()),
       ),
     );
   }
-
 }
 
 
+class TicTacWidget extends StatefulWidget {
+  @override
+  _TicTacWidgetState createState() => _TicTacWidgetState();
+}
 
-class MyButton extends StatelessWidget {
+class _TicTacWidgetState extends State<TicTacWidget> {
+  bool _isNull = true;
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        print('MyButton was tapped!');
-      },
-      child: Container(
-        height: 36.0,
-        padding: const EdgeInsets.all(8.0),
-        margin: const EdgeInsets.symmetric(horizontal: 8.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0),
-          color: Colors.red[300],
-        ),
-        child: Center(
-          child: Text('Restart'),
-        ),
-      ),
+    return IconButton(
+      icon: ,
+      color: Colors.red[10],
+      onPressed: _toggleIsNull,
     );
   }
+
+  void _toggleIsNull(){
+    setState(() {
+      if(_isNull) _isNull = false;
+      else _isNull = true;
+    });
+
+  }
+
 }
