@@ -3,31 +3,44 @@ import 'Board.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: 'Flutter Tutorial',
+    title: 'Tactical Tic Tac Toe',
     home: Home(),
   ));
 }
 
-class Home extends StatelessWidget {
+class Game extends StatelessWidget {
   var board = Board();
   @override
   Widget build(BuildContext context) {
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
-      appBar: new AppBar(
-        elevation: 0.5,
-        title: new Text("Tactical Tic-Tac-Toe",
-          style: TextStyle(fontFamily: 'Krub',
-              fontWeight: FontWeight.bold, color: Colors.black.withOpacity(0.8)),
-        ),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-      ),
+      appBar: defaultBar("Play!"),
       body: board.getBoard(),
     );
   }
 }
 
-ShapeBorder test(){
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: defaultBar("Tactical Tic Tac Toe"),
+      body:
+      ),
+    );
+  }
 
+}
+
+class defaultBar extends AppBar {
+  defaultBar(String title):
+      super(
+        elevation: 0.5,
+        title: new Text(title,
+          style: TextStyle(fontFamily: 'Krub',
+              fontWeight: FontWeight.bold, color: Colors.black.withOpacity(0.8)),
+        ),
+        backgroundColor: Colors.white,
+        centerTitle: true,
+      );
 }

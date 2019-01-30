@@ -12,6 +12,7 @@ class Board{
     for(int i = 0; i < 9; i++){
       boards.add(SubBoard(i));
     }
+
   }
 
   GridView getBoard(){

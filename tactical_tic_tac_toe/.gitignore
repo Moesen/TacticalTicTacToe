@@ -16,6 +16,7 @@
 *.iws
 *.xml
 .idea/
+*.xml
 
 # Visual Studio Code related
 .vscode/
