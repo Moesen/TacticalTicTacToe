@@ -127,7 +127,7 @@ class Logic{
   static int nextBoard = -1;//the board that the player is allowed to choose. Null for all boards
   static String turn = "cross";
 
-  var fields_list = List.generate(81, (i) => 0);
+  static var fields_list = List.generate(81, (i) => 0);
 
   Logic();
 
@@ -135,7 +135,7 @@ class Logic{
 
   void updateLogic(int next, int subIdx) {
     fields_list[9 * subIdx + next] = (turn == "cross" ? 1 : 2 );
-
+    print(fields_list);
     int winner = whoWon(subIdx);
     if (winner != 0){
     print(winner.toString() + turn + " winner board number " + subIdx.toString());
@@ -164,7 +164,7 @@ class Logic{
 
     final List<List<int>> evaluateIdxes = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
     //the list of possible win combinations on a board
-
+    print(subboard_list.toString() + subIdx.toString());
     for(List<int> evalIdxes in evaluateIdxes){ //evaluates all possible win combinations
       int tile_similarities = 0;
       int oldVal;
