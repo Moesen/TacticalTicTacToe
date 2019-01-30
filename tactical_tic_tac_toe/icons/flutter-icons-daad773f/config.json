@@ -1,0 +1,124 @@
+{
+  "name": "Icons",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "rrhco7mfj6ro9yzhe4a1rbln9flw47re",
+      "css": "cancel",
+      "code": 59392,
+      "src": "modernpics"
+    },
+    {
+      "uid": "8da3ac534210aae9c0f0e13804c1df97",
+      "css": "cancel-1",
+      "code": 59393,
+      "src": "websymbols"
+    },
+    {
+      "uid": "16f88519423df34fc5c48be7ded81b8f",
+      "css": "cd",
+      "code": 59394,
+      "src": "entypo"
+    },
+    {
+      "uid": "e188c02f740feff7e2d2bce1950b75fa",
+      "css": "record",
+      "code": 59395,
+      "src": "entypo"
+    },
+    {
+      "uid": "c759418c008e9562944080fee617fc76",
+      "css": "cancel-circled",
+      "code": 59396,
+      "src": "entypo"
+    },
+    {
+      "uid": "6569bd1801e232180221ba0f6a4b8b27",
+      "css": "vimeo-circled",
+      "code": 62215,
+      "src": "entypo"
+    },
+    {
+      "uid": "0419da6446cb4f31093e2022793571ca",
+      "css": "twitter-circled",
+      "code": 62218,
+      "src": "entypo"
+    },
+    {
+      "uid": "ce1d525f3f31024c6a6b38f5e9a88953",
+      "css": "facebook-circled",
+      "code": 62221,
+      "src": "entypo"
+    },
+    {
+      "uid": "818a6c2a76c89800632c0335e9cdafee",
+      "css": "gplus-circled",
+      "code": 62224,
+      "src": "entypo"
+    },
+    {
+      "uid": "2e9c0fdd4d59598cb122801ab80222e7",
+      "css": "pinterest-circled",
+      "code": 62227,
+      "src": "entypo"
+    },
+    {
+      "uid": "72a6237752f5cd00a107d097adac9ce3",
+      "css": "tumblr-circled",
+      "code": 62230,
+      "src": "entypo"
+    },
+    {
+      "uid": "21adad41ffebf469b2370d26bcb8a3c4",
+      "css": "linkedin-circled",
+      "code": 62233,
+      "src": "entypo"
+    },
+    {
+      "uid": "ec3e0b50a56867ac26a6de47953b9831",
+      "css": "dribbble-circled",
+      "code": 62236,
+      "src": "entypo"
+    },
+    {
+      "uid": "e3606432570e59d4d852727bad063cd1",
+      "css": "stumbleupon-circled",
+      "code": 62239,
+      "src": "entypo"
+    },
+    {
+      "uid": "9eedcbf6e07d6ba820e3e22f5ab6f734",
+      "css": "lastfm-circled",
+      "code": 62242,
+      "src": "entypo"
+    },
+    {
+      "uid": "c9a7eca58474311926922ff8c2c1d256",
+      "css": "vkontakte",
+      "code": 62292,
+      "src": "entypo"
+    },
+    {
+      "uid": "4d8e1f1173bab9aac8991e9eee2fa326",
+      "css": "rdio-circled",
+      "code": 62245,
+      "src": "entypo"
+    },
+    {
+      "uid": "882d407598d4e60074f5c08b3372811e",
+      "css": "spotify",
+      "code": 62247,
+      "src": "entypo"
+    },
+    {
+      "uid": "7fe35dea791456114c356934333b4171",
+      "css": "renren",
+      "code": 62268,
+      "src": "entypo"
+    }
+  ]
+}
