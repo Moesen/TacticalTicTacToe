@@ -3,12 +3,12 @@ import 'presentation/custom_icons.dart';
 
 class Board{
   var boards = List<SubBoard>();
-  var logic = Logic();
+  var logic = Logic(); //gives access to static logic variables
   Board(){
     initBoard();
   }
 
-  void initBoard(){
+  void initBoard(){ //creates the 9 subboards
     for(int i = 0; i < 9; i++){
       boards.add(SubBoard(i));
     }
@@ -16,7 +16,7 @@ class Board{
   }
 
   GridView getBoard(){
-    return GridView.count(
+    return GridView.count( //places subboards in 3x3 grid
       crossAxisCount: 3,
       children: List.generate(9, (i) => boards[i].getTicTacs()),
       shrinkWrap: true,
@@ -27,11 +27,11 @@ class Board{
 }
 
 class SubBoard{
-  var fields = List<TicTac>();
-  var logic = Logic();
+  var fields = List<TicTac>(); //the 9 fields of this board
+  var logic = Logic(); //access to static logic variables
 
   TicTac state;
-  int pos;
+  int pos; //the position of this board
 
   SubBoard(int pos){
     this.pos = pos;
@@ -40,12 +40,12 @@ class SubBoard{
 
   void initSubBoard(){
     for(int i = 0; i < 9; i++){
-      fields.add(TicTac(i, this.pos));
+      fields.add(TicTac(i, this.pos)); //adds 9 fields to the subboard
     }
   }
 
   GridView getTicTacs(){
-    return GridView.count(
+    return GridView.count( //builds the subboard using padding and the 9 fields
       crossAxisCount: 3,
       children: fields,
       shrinkWrap: true,
@@ -60,9 +60,9 @@ class SubBoard{
 
 
 class TicTac extends StatefulWidget {
-  int pos;
-  int superPos;
-  int type;
+  int pos; //fields position in the subboards
+  int superPos; //the position of the parenting subboard of this fields
+  String type; //whether the field holds cross or circle
 
   TicTac(pos, superPos){
     this.pos = pos;
@@ -81,8 +81,9 @@ class _TicTacWidgetState extends State<TicTac> {
   int pos;
   int superPos;
 
-  var logic = Logic();
-  var myIcon = Icon(Icons.fiber_manual_record);
+  var logic = Logic(); //access to static logic variables
+
+  var myIcon = Icon(Icons.fiber_manual_record); //the empty icon settings
   double _iconSize = 5;
   var iconColor = Colors.deepOrange;
 
@@ -98,7 +99,7 @@ class _TicTacWidgetState extends State<TicTac> {
   }
 
   IconButton buildAButton(){
-    return IconButton(
+    return IconButton( //builds the field from icon settings
       iconSize: _iconSize,
       icon: myIcon,
       onPressed: onPressingMethodCallActionDoingOfThings123,
@@ -113,39 +114,47 @@ class _TicTacWidgetState extends State<TicTac> {
 
 
       if (type == null && (superPos == logic.getNextBoard() || logic.getNextBoard() == -1)) {
-        //If it is empty and this is the current subboard
+        //If: 1. the field is empty, 2. this subboard is allowed to be pressed (-1 meaning that all boards are allowed to be pressed)
 
+        type = logic.getTurn();  //the type of this field is set to the current turn
         logic.updateLogic(pos, superPos); //Changes turn
-        type = logic.getTurn();
-        myIcon = (type == 'cross' ? Icon(CustomIcons.spotify) : Icon(CustomIcons.facebook_circled));
+
+        if (type == "cross") //updates icon and color
+          {
+            myIcon = Icon(CustomIcons.spotify);
+            iconColor = Colors.green;
+          }
+        else {
+        myIcon = Icon(CustomIcons.facebook_circled);
+        iconColor = Colors.lightBlue;
+      };
         _iconSize = 30;
-        iconColor = (type == 'cross' ? Colors.green : Colors.lightBlue);
       }
     });
   }
 }
 class Logic{
-  static int nextBoard = -1;//the board that the player is allowed to choose. Null for all boards
-  static String turn = "cross";
+  static int nextBoard = -1;//the board that the player is allowed to choose. -1 for all boards
+  static String turn = "cross"; //the current turn
 
-  var fields_list = List.generate(81, (i) => 0);
+  static var fields_list = List.generate(81, (i) => 0); //list of all fields in entire board. 0 for empty, 1 for cross, 2 for circle
 
   Logic();
 
 
 
   void updateLogic(int next, int subIdx) {
-    fields_list[9 * subIdx + next] = (turn == "cross" ? 1 : 2 );
+    fields_list[9 * subIdx + next] = (turn == "cross" ? 1 : 2 ); //updates the field which was just pressed
 
-    int winner = whoWon(subIdx);
+    int winner = whoWon(subIdx); //checks whether the sub board is won
     if (winner != 0){
     print(winner.toString() + turn + " winner board number " + subIdx.toString());
     }
 
 
-    nextBoard = next;
+    nextBoard = next; //uses the just pressed field as the next allowed sub board
 
-    if (turn == "cross") turn = "circle";
+    if (turn == "cross") turn = "circle"; //changes turn
     else turn = "cross";
   }
 
