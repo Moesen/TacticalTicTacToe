@@ -123,11 +123,11 @@ class Logic{
 
 
   void updateLogic(int next, int subIdx) {
-    fields_list[9 * subBoard + next] = (turn == "cross" ? 1 : 2 );
+    fields_list[9 * subIdx + next] = (turn == "cross" ? 1 : 2 );
 
     int winner = whoWon(subIdx);
     if (winner != 0){
-    print(winner.toString() + turn + " vinder board nummer " + subIdx.toString())
+    print(winner.toString() + turn + " vinder board nummer " + subIdx.toString());
     }
     
     
@@ -146,7 +146,7 @@ class Logic{
   int whoWon(int subIdx){
     //function takes list of entire board and index of changed subboard
 
-    subboard_list = fields_list.sublist(subIdx*9, subIdx*9+9)
+    var subboard_list = fields_list.sublist(subIdx*9, subIdx*9+9);
     
     //returns str winning type of subboard. null for no winner
 
@@ -158,11 +158,11 @@ class Logic{
       int oldVal;
 
       for(int idx in evalIdxes){ //tracks whether the type of tile changes over a combination
-        var val = subboard_list[idx].type;
+        var val = subboard_list[idx];
         if ( val == oldVal && val != 0){ //if values are the same and not null
           tile_similarities++;
         }
-        oldVal = subboard_list[idx].type;
+        oldVal = subboard_list[idx];
       }
 
       if(tile_similarities == 2){ //if all values in the win combination are the same, the board is won
