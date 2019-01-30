@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'boardWidgets.dart';
+import 'playWidgets.dart';
+import 'logic.dart';
+
 import 'Board.dart';
 import 'presentation/custom_icons.dart';
 
@@ -26,14 +30,23 @@ void main() {
 }
 
 class Game extends StatelessWidget {
-  var board = Board();
+  static var turnText = Turn();
+  var board = Board(turnText);
+
+  var logic = Logic();
+
+  Game(){
+    logic.setBoard(board);
+  }
 
   @override
   Widget build(BuildContext context) {
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
-      body: board.getBoard(),
-    );
+        appBar: defaultBar("Play!"),
+        body: ListView(
+            shrinkWrap: true,
+            children: <Widget>[board,  turnText]));
   }
 }
 
