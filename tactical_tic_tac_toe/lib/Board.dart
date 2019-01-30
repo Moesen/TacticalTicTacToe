@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'presentation/custom_icons.dart';
 
 class Board{
   var boards = List<SubBoard>();
@@ -16,7 +17,7 @@ class Board{
   GridView getBoard(){
     return GridView.count(
       crossAxisCount: 3,
-      children: List.generate(9, (i) => boards[i].getTicTacs()),
+      children: List.generate(9, (i) => (boards[i].getTicTacs())),
       shrinkWrap: true,
       physics: ScrollPhysics(),
     );
@@ -48,7 +49,9 @@ class SubBoard{
       children: fields,
       shrinkWrap: true,
       physics: ScrollPhysics(),
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(5),
+      mainAxisSpacing: 2,
+      crossAxisSpacing: 2,
     );
   }
 
@@ -77,7 +80,9 @@ class _TicTacWidgetState extends State<TicTac> {
   int superPos;
 
   var logic = Logic();
-  var myIcon;
+  var myIcon = Icon(Icons.fiber_manual_record);
+  double _iconSize = 5;
+  var iconColor = Colors.deepOrange;
 
   _TicTacWidgetState(pos, superPos){
     this.pos = pos;
@@ -89,12 +94,12 @@ class _TicTacWidgetState extends State<TicTac> {
     return buildAButton();
   }
 
-  MaterialButton buildAButton(){
-    return MaterialButton(
-      splashColor: Colors.blue,
+  IconButton buildAButton(){
+    return IconButton(
+      iconSize: _iconSize,
+      icon: myIcon,
       onPressed: onPressingMethodCallActionDoingOfThings123,
-      color: Colors.deepOrange[200],
-
+      color: iconColor,
     );
   }
 
@@ -106,7 +111,9 @@ class _TicTacWidgetState extends State<TicTac> {
         //If it is empty and this is the current subboard
         logic.changeTurn(pos); //Changes turn
         type = logic.getTurn();
-        myIcon = (type == "cross" ? Icon(Icons.close) : Icon(Icons.blur_circular));
+        myIcon = (type == 'cross' ? Icon(CustomIcons.spotify) : Icon(CustomIcons.facebook_circled));
+        _iconSize = 30;
+        iconColor = (type == 'cross' ? Colors.green : Colors.lightBlue);
       }
     });
   }
