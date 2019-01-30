@@ -36,6 +36,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
@@ -46,6 +48,16 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.io/assets-and-images/#from-packages
+
+  fonts:
+  - family: Krub
+    fonts:
+    - asset: fonts/Krub-Regular.ttf
+    - asset: fonts/Krub-Bold.ttf
+      weight: 700
+  - family:  CustomIcons
+    fonts:
+    - asset: fonts/CustomIcons.ttf
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
