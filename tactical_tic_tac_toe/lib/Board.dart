@@ -104,7 +104,7 @@ class _TicTacWidgetState extends State<TicTac> {
       if (type == null && (superPos == logic.getNextBoard() || logic.getNextBoard() == -1)) {
         //If it is empty and this is the current subboard
 
-        logic.changeTurn(pos); //Changes turn
+        logic.updateLogic(pos, superPos); //Changes turn
         type = logic.getTurn();
         myIcon = (type == "cross" ? Icon(Icons.close) : Icon(Icons.blur_circular));
       }
@@ -116,11 +116,21 @@ class Logic{
   static int nextBoard = -1;//the board that the player is allowed to choose. Null for all boards
   static String turn = "cross";
 
+  var fields_list = List.generate(81, (i) => 0);
+
   Logic();
 
 
 
-  void changeTurn(int next) {
+  void updateLogic(int next, int subIdx) {
+    fields_list[9 * subBoard + next] = (turn == "cross" ? 1 : 2 );
+
+    int winner = whoWon(subIdx);
+    if (winner != 0){
+    print(winner.toString() + turn + " vinder board nummer " + subIdx.toString())
+    }
+    
+    
     nextBoard = next;
 
     if (turn == "cross") turn = "circle";
@@ -133,8 +143,11 @@ class Logic{
 
   String getTurn(){return turn;}
 
-  String whoWon(subboard_list){
-    //function takes list of entire board and index of changed tile
+  int whoWon(int subIdx){
+    //function takes list of entire board and index of changed subboard
+
+    subboard_list = fields_list.sublist(subIdx*9, subIdx*9+9)
+    
     //returns str winning type of subboard. null for no winner
 
     final List<List<int>> evaluateIdxes = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
@@ -142,11 +155,11 @@ class Logic{
 
     for(List<int> evalIdxes in evaluateIdxes){ //evaluates all possible win combinations
       int tile_similarities = 0;
-      String oldVal;
+      int oldVal;
 
       for(int idx in evalIdxes){ //tracks whether the type of tile changes over a combination
         var val = subboard_list[idx].type;
-        if ( val == oldVal && val != null){ //if values are the same and not null
+        if ( val == oldVal && val != 0){ //if values are the same and not null
           tile_similarities++;
         }
         oldVal = subboard_list[idx].type;
@@ -156,7 +169,7 @@ class Logic{
         return oldVal;
       }
     }
-    return null;
+    return 0;
   }
 
 }
