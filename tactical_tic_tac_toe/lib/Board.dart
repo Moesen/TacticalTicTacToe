@@ -138,7 +138,7 @@ class Logic{
 
     int winner = whoWon(subIdx);
     if (winner != 0){
-    print(winner.toString() + turn + " vinder board nummer " + subIdx.toString());
+    print(winner.toString() + turn + " winner board number " + subIdx.toString());
     }
 
 
