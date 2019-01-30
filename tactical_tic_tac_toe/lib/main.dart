@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 import 'Board.dart';
+import 'playWidgets.dart';
+import 'dart:async';
 
 void main() {
   runApp(MaterialApp(
     title: 'Tactical Tic Tac Toe',
-    home: Home(),
+    home: Game(),
   ));
 }
 
 class Game extends StatelessWidget {
+  final stream = StreamController();
+
   var board = Board();
+  var turnText = Turn();
+  var boardMsg = BoardMsg();
   @override
   Widget build(BuildContext context) {
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
       appBar: defaultBar("Play!"),
-      body: board.getBoard(),
+      body: ListView(
+        shrinkWrap: true,
+        children: <Widget>[board, turnText, boardMsg]
+      )
     );
   }
 }
@@ -25,9 +34,8 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: defaultBar("Tactical Tic Tac Toe"),
-      body:
-      ),
-    );
+      body: null,
+      );
   }
 
 }

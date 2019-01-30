@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
 import 'presentation/custom_icons.dart';
 
-class Board{
+class Board extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return new _BoardState();
+  }
+
+}
+
+class _BoardState extends State<Board>{
   var boards = List<SubBoard>();
   var logic = Logic(); //gives access to static logic variables
-  Board(){
+
+  _BoardState(){
     initBoard();
   }
 
-  void initBoard(){ //creates the 9 subboards
+  @override
+  Widget build(BuildContext context) {
+  return getBoard();
+  }
+
+    void initBoard(){ //creates the 9 subboards
     for(int i = 0; i < 9; i++){
       boards.add(SubBoard(i));
     }
@@ -18,22 +33,37 @@ class Board{
   GridView getBoard(){
     return GridView.count( //places subboards in 3x3 grid
       crossAxisCount: 3,
-      children: List.generate(9, (i) => boards[i].getTicTacs()),
+      children: boards,
       shrinkWrap: true,
       physics: ScrollPhysics(),
     );
   }
 
+
 }
 
-class SubBoard{
-  var fields = List<TicTac>(); //the 9 fields of this board
-  var logic = Logic(); //access to static logic variables
+class SubBoard extends StatefulWidget {
 
-  TicTac state;
   int pos; //the position of this board
 
   SubBoard(int pos){
+    this.pos = pos;
+
+  }
+  @override
+  State<StatefulWidget> createState() {
+    return new _SubBoardState(pos);
+  }
+
+}
+
+class _SubBoardState extends State<SubBoard>{
+  var fields = List<TicTac>(); //the 9 fields of this board
+  var logic = Logic(); //access to static logic variables
+
+  int pos;
+
+  _SubBoardState(int pos){
     this.pos = pos;
     initSubBoard();
   }
@@ -44,6 +74,10 @@ class SubBoard{
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return getTicTacs();
+  }
   GridView getTicTacs(){
     return GridView.count( //builds the subboard using padding and the 9 fields
       crossAxisCount: 3,
@@ -56,8 +90,8 @@ class SubBoard{
     );
   }
 
-}
 
+}
 
 class TicTac extends StatefulWidget {
   int pos; //fields position in the subboards
