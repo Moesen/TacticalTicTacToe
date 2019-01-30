@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'Board.dart';
+
+import 'boardWidgets.dart';
 import 'playWidgets.dart';
-import 'dart:async';
+import 'logic.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -11,21 +12,23 @@ void main() {
 }
 
 class Game extends StatelessWidget {
-  final stream = StreamController();
+  static var turnText = Turn();
+  var board = Board(turnText);
 
-  var board = Board();
-  var turnText = Turn();
-  var boardMsg = BoardMsg();
+  var logic = Logic();
+
+  Game(){
+    logic.setBoard(board);
+  }
+
   @override
   Widget build(BuildContext context) {
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
-      appBar: defaultBar("Play!"),
-      body: ListView(
-        shrinkWrap: true,
-        children: <Widget>[board, turnText, boardMsg]
-      )
-    );
+        appBar: defaultBar("Play!"),
+        body: ListView(
+            shrinkWrap: true,
+            children: <Widget>[board,  turnText]));
   }
 }
 
@@ -35,20 +38,22 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: defaultBar("Tactical Tic Tac Toe"),
       body: null,
-      );
+    );
   }
-
 }
 
 class defaultBar extends AppBar {
-  defaultBar(String title):
-      super(
-        elevation: 0.5,
-        title: new Text(title,
-          style: TextStyle(fontFamily: 'Krub',
-              fontWeight: FontWeight.bold, color: Colors.black.withOpacity(0.8)),
-        ),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-      );
+  defaultBar(String title)
+      : super(
+          elevation: 0.5,
+          title: new Text(
+            title,
+            style: TextStyle(
+                fontFamily: 'Krub',
+                fontWeight: FontWeight.bold,
+                color: Colors.black.withOpacity(0.8)),
+          ),
+          backgroundColor: Colors.white,
+          centerTitle: true,
+        );
 }
