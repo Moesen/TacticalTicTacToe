@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'presentation/custom_icons.dart';
 
 class Board{
   var boards = List<SubBoard>();
@@ -48,7 +49,9 @@ class SubBoard{
       children: fields,
       shrinkWrap: true,
       physics: ScrollPhysics(),
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(5),
+      mainAxisSpacing: 2,
+      crossAxisSpacing: 2,
     );
   }
 
@@ -78,7 +81,9 @@ class _TicTacWidgetState extends State<TicTac> {
   int superPos;
 
   var logic = Logic();
-  var myIcon;
+  var myIcon = Icon(Icons.fiber_manual_record);
+  double _iconSize = 5;
+  var iconColor = Colors.deepOrange;
 
   _TicTacWidgetState(pos, superPos, type){
     this.pos = pos;
@@ -88,11 +93,15 @@ class _TicTacWidgetState extends State<TicTac> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      shape: ,
-      color: Colors.red,
-      splashColor: Colors.blue,
+    return buildAButton();
+  }
+
+  IconButton buildAButton(){
+    return IconButton(
+      iconSize: _iconSize,
+      icon: myIcon,
       onPressed: onPressingMethodCallActionDoingOfThings123,
+      color: iconColor,
     );
   }
 
@@ -107,16 +116,13 @@ class _TicTacWidgetState extends State<TicTac> {
 
         logic.updateLogic(pos, superPos); //Changes turn
         type = logic.getTurn();
-        myIcon = (type == "cross" ? Icon(Icons.close) : Icon(Icons.blur_circular));
+        myIcon = (type == 'cross' ? Icon(CustomIcons.spotify) : Icon(CustomIcons.facebook_circled));
+        _iconSize = 30;
+        iconColor = (type == 'cross' ? Colors.green : Colors.lightBlue);
       }
     });
   }
-
-  CircleBorder getBorder(){
-
-  }
 }
-
 class Logic{
   static int nextBoard = -1;//the board that the player is allowed to choose. Null for all boards
   static String turn = "cross";
@@ -132,10 +138,10 @@ class Logic{
 
     int winner = whoWon(subIdx);
     if (winner != 0){
-    print(winner.toString() + turn + " vinder board nummer " + subIdx.toString());
+    print(winner.toString() + turn + " winner board number " + subIdx.toString());
     }
-    
-    
+
+
     nextBoard = next;
 
     if (turn == "cross") turn = "circle";
@@ -143,6 +149,7 @@ class Logic{
   }
 
   int getNextBoard(){
+    print("this is next: " + nextBoard.toString());
     return nextBoard;
   }
 
@@ -152,7 +159,7 @@ class Logic{
     //function takes list of entire board and index of changed subboard
 
     var subboard_list = fields_list.sublist(subIdx*9, subIdx*9+9);
-    
+
     //returns str winning type of subboard. null for no winner
 
     final List<List<int>> evaluateIdxes = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];

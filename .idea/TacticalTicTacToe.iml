@@ -4,6 +4,9 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/tactical_tic_tac_toe/lib" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/Shapes/custom_shapes/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Shapes/custom_shapes/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Shapes/custom_shapes/build" />
       <excludeFolder url="file://$MODULE_DIR$/tactical_tic_tac_toe/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/tactical_tic_tac_toe/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/tactical_tic_tac_toe/build" />
