@@ -24,19 +24,25 @@
 ///         Author:    Daniel Bruce
 ///         License:   SIL (http://scripts.sil.org/OFL)
 ///         Homepage:  http://www.entypo.com
+/// * Material Design Icons, Copyright (C) Google, Inc
+///         Author:    Google
+///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
+///         Homepage:  https://design.google.com/icons/
 ///
 import 'package:flutter/widgets.dart';
 
 class CustomIcons {
   CustomIcons._();
 
-  static const _kFontFam = 'CustomIcons';
+  static const _kFontFam = 'Icons';
 
   static const IconData cancel = const IconData(0xe800, fontFamily: _kFontFam);
   static const IconData cancel_1 = const IconData(0xe801, fontFamily: _kFontFam);
   static const IconData cd = const IconData(0xe802, fontFamily: _kFontFam);
   static const IconData record = const IconData(0xe803, fontFamily: _kFontFam);
   static const IconData cancel_circled = const IconData(0xe804, fontFamily: _kFontFam);
+  static const IconData assessment = const IconData(0xe805, fontFamily: _kFontFam);
+  static const IconData help_circled = const IconData(0xe806, fontFamily: _kFontFam);
   static const IconData vimeo_circled = const IconData(0xf307, fontFamily: _kFontFam);
   static const IconData twitter_circled = const IconData(0xf30a, fontFamily: _kFontFam);
   static const IconData facebook_circled = const IconData(0xf30d, fontFamily: _kFontFam);

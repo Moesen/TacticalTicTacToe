@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'Board.dart';
 import 'presentation/custom_icons.dart';
 
@@ -6,80 +7,106 @@ void main() {
   runApp(MaterialApp(
     title: 'Tactical Tic Tac Toe',
     home: Home(),
+    theme: ThemeData(
+      brightness: Brightness.dark,
+      primaryColor: Colors.lightBlue[800],
+      accentColor: Colors.cyan[600],
+
+      fontFamily: 'Krub',
+
+
+
+      textTheme: TextTheme(
+        headline: TextStyle(fontSize: 100, fontWeight: FontWeight.bold),
+        title: TextStyle(fontSize: 18.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
+        body1: TextStyle(fontSize: 14.0, fontFamily: 'Arial'),
+      )
+    ),
   ));
 }
 
 class Game extends StatelessWidget {
   var board = Board();
+
   @override
   Widget build(BuildContext context) {
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
-      appBar: ,
       body: board.getBoard(),
     );
   }
 }
 
 class Home extends StatelessWidget {
-
+  var layout = StandardLayout(infoText: "Home");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ,
-        body: Center(
-        child: Column (
-          children: <Widget> [
-            Hero(
-            tag: 'goToButton',
-            child: IconButton(
-              icon: Icon(CustomIcons.vkontakte),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Game()),
-                );
-              },
+      appBar: layout.getAppBar(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                GestureDetector(
+                  onTap: null,
+                  child: Hero(tag: "play",
+                      child: Icon(Icons.play_circle_filled,
+                        size: 100,)),
+                ),
+                Text("Play",
+                  style: Theme.of(context).textTheme.title,
+                )
+              ],
             ),
-            ),
-            Text("Go to Game"),
+            Column(
+              children: <Widget>[
+                GestureDetector(
+                  onTap: null,
+                  child: Hero(tag: "how2",
+                      child: Icon(Icons.help, size:
+                        100,),
+                  ),
+                ),
+                Text("How 2",
+                  style: Theme.of(context).textTheme.title,
+                )
+              ],
+            )
           ],
         ),
+      )
+    );
+  }
+}
+
+class HowTo extends StatelessWidget {
+  var layout = StandardLayout(infoText: "How To");
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("How To", textAlign: TextAlign.center),
       ),
+      body: GestureDetector(
+        onTap: () {},
+      ),
+    );
+  }
+}
+
+class StandardLayout {
+
+  final String infoText;
+
+  StandardLayout({this.infoText});
+
+
+  AppBar getAppBar() {
+    return AppBar(
+      title: Text(infoText),
     );
   }
 
 }
-
-class TicTacBar extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    _TicTacBarState createState() => _TicTacBarState();
-  }
-}
-
-class _TicTacBarState extends State<TicTacBar> {
-  Choice _selectedChoice = choices[0];
-
-  void _select(Choice choice) {
-    setState(() {
-      _selectedChoice = choice;
-    });
-  }
-}
-
-class Choice {
-  const Choice({this.title, this.icon});
-
-  final String title;
-  final IconData icon;
-}
-
-const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Car', icon: Icons.directions_car),
-  const Choice(title: 'Bicycle', icon: Icons.directions_bike),
-  const Choice(title: 'Boat', icon: Icons.directions_boat),
-  const Choice(title: 'Bus', icon: Icons.directions_bus),
-  const Choice(title: 'Train', icon: Icons.directions_railway),
-  const Choice(title: 'Walk', icon: Icons.directions_walk),
-];
