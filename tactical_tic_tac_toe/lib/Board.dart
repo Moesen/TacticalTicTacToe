@@ -180,7 +180,7 @@ class Logic{
 
       for(int idx in evalIdxes){ //tracks whether the type of tile changes over a combination
         var val = subboard_list[idx];
-        if ( val == oldVal && val != 0){ //if values are the same and not null
+        if ( val == oldVal && val != 0){ //if values are the same and not empty
           tile_similarities++;
         }
         oldVal = subboard_list[idx];
