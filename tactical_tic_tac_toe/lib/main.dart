@@ -4,7 +4,6 @@ import 'boardWidgets.dart';
 import 'playWidgets.dart';
 import 'logic.dart';
 
-import 'Board.dart';
 import 'presentation/custom_icons.dart';
 
 void main() {
@@ -13,8 +12,8 @@ void main() {
     home: Home(),
     theme: ThemeData(
       brightness: Brightness.dark,
-      primaryColor: Colors.lightBlue[800],
-      accentColor: Colors.cyan[600],
+      primaryColor: Colors.deepOrange[900],
+      accentColor: Colors.cyan[100],
 
       fontFamily: 'Krub',
 
@@ -30,6 +29,7 @@ void main() {
 }
 
 class Game extends StatelessWidget {
+  var layout = StandardLayout(infoText: "Home");
   static var turnText = Turn();
   var board = Board(turnText);
 
@@ -43,7 +43,7 @@ class Game extends StatelessWidget {
   Widget build(BuildContext context) {
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
-        appBar: defaultBar("Play!"),
+        appBar: layout.getAppBar(),
         body: ListView(
             shrinkWrap: true,
             children: <Widget>[board,  turnText]));
@@ -63,7 +63,11 @@ class Home extends StatelessWidget {
             Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: null,
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return Game();
+                    }));
+                  },
                   child: Hero(tag: "play",
                       child: Icon(Icons.play_circle_filled,
                         size: 100,)),
@@ -119,6 +123,7 @@ class StandardLayout {
   AppBar getAppBar() {
     return AppBar(
       title: Text(infoText),
+
     );
   }
 

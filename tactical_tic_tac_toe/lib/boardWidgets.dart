@@ -124,7 +124,8 @@ class _SubBoardState extends State<SubBoard> {
     }
     else {
       return Container(
-          child: thisIcon
+          child: thisIcon,
+          decoration: new BoxDecoration(color: thisColor),
       );
     }
   }
