@@ -7,8 +7,10 @@ import 'playWidgets.dart';
 void main() {
   runApp(MaterialApp(
     routes: <String, WidgetBuilder>{
+      '/home': (BuildContext context) => new Home(),
       '/game': (BuildContext context) => new Game(),
-      '/how2': (BuildContext context) => new HowTo()
+      '/how2': (BuildContext context) => new HowTo(),
+      '/win': (BuildContext context) => new winScreen(),
     },
     title: 'Tactical Tic Tac Toe',
     home: Home(),
@@ -24,9 +26,14 @@ void main() {
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.bold),
           body1: TextStyle(fontSize: 72, fontFamily: 'Arial'),
+          display1: TextStyle(fontSize: 30, fontFamily: 'Krub', fontWeight: FontWeight.bold),
         )),
   ));
 }
+
+
+
+
 
 class Game extends StatelessWidget {
   var layout = StandardLayout(infoText: "Home");
@@ -43,34 +50,35 @@ class Game extends StatelessWidget {
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
         appBar: AppBar(
-            title: Text("Tactify"),
-            centerTitle: true,
-            leading: GestureDetector(
-                child: Hero(
-                  tag: "play",
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    size: 30,
-                  ),
+          title: Text("Tactify", style: Theme.of(context).textTheme.display1,),
+          centerTitle: true,
+          leading: GestureDetector(
+              child: Hero(
+                tag: "play",
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 30,
                 ),
-                onTap: () {
-                  Navigator.pop(context);
-                }),
-                actions: <Widget>[
-
-                  GestureDetector(
-                    //ToDo Make game reset
-                    onTap: null,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Icon(Icons.undo),
-                        Text("Restart"),
-                      ],
-                    )
-                  ),
-                  Row(children: <Widget>[Text("   ")],),
-                ],),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              }),
+          actions: <Widget>[
+            GestureDetector(
+                //ToDo Make game reset
+                onTap: null,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Icon(Icons.undo),
+                    Text("Restart"),
+                  ],
+                )),
+            Row(
+              children: <Widget>[Text("   ")],
+            ),
+          ],
+        ),
         body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[board, turnText]));
@@ -137,9 +145,8 @@ class HowTo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[300],
         appBar: AppBar(
-            title: Text("How To"),
+            title: Text("How To", style: Theme.of(context).textTheme.display1,),
             centerTitle: true,
             leading: GestureDetector(
                 child: Hero(
@@ -171,6 +178,45 @@ class HowTo extends StatelessWidget {
   }
 }
 
+class winScreen extends StatelessWidget {
+  var layout = StandardLayout();
+  var logic = Logic();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text("Winner", style: Theme.of(context).textTheme.display1,),
+            centerTitle: true,
+            leading: Icon(null),
+          ),
+        body: Center(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon((logic.getTurn() == 'cross')
+                    ? Icons.close
+                    : Icons.radio_button_unchecked, size: 100,),
+                Text("WINS!"),
+                GestureDetector(
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.arrow_back_ios, size: 50,),
+                      Text("Go Back"),
+                    ],
+                  ),
+                onTap: () => Navigator.of(context)
+                    .pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false),
+                )
+              ],
+            ),
+          ),
+        ));
+  }
+}
+
 class StandardLayout {
   final String infoText;
 
@@ -178,7 +224,7 @@ class StandardLayout {
 
   AppBar getAppBar() {
     return AppBar(
-      title: Text(infoText),
+      title: Text(infoText, style: TextStyle(fontSize: 30, fontFamily: 'Krub', fontWeight: FontWeight.bold),),
       centerTitle: true,
     );
   }

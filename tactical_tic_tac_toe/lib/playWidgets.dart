@@ -53,10 +53,12 @@ class _TurnState extends State<Turn> {
 
   void declareWinner(String winner) {
     setState(() {
-      winnerDeclaration = Text(winner.toUpperCase() + " HAS WON THE GAME USING " ,
+      winnerDeclaration = Text(
+          winner.toUpperCase() + " HAS WON THE GAME USING ",
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontSize: 50));
+      Navigator.of(context).pushNamed('/win');
     });
   }
 }
