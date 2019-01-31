@@ -12,7 +12,7 @@ class Logic {
 
   static var turnTxt;
   static var board;
-  static var turnsUsed;
+  static var turnsUsed = 0;
 
   Logic();
 

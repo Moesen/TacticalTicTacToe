@@ -14,7 +14,7 @@ void main() {
     home: Home(),
     theme: ThemeData(
         brightness: Brightness.dark,
-        primaryColor: Colors.deepOrange[900],
+        primaryColor: Colors.grey[900],
         accentColor: Colors.cyan[100],
         fontFamily: 'Krub',
         textTheme: TextTheme(
@@ -43,21 +43,34 @@ class Game extends StatelessWidget {
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
         appBar: AppBar(
-          title: Text("Tactify"),
-          centerTitle: true,
-          leading: GestureDetector(child: Hero(
-            tag: "play",
-            child: Icon(
-              Icons.arrow_back_ios,
-              size: 30,
-            ),
-          ),
-          onTap: () {
-            Navigator.pop(context);
-          }
-        )
+            title: Text("Tactify"),
+            centerTitle: true,
+            leading: GestureDetector(
+                child: Hero(
+                  tag: "play",
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    size: 30,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                }),
+                actions: <Widget>[
 
-        ),
+                  GestureDetector(
+                    //ToDo Make game reset
+                    onTap: null,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Icon(Icons.undo),
+                        Text("Restart"),
+                      ],
+                    )
+                  ),
+                  Row(children: <Widget>[Text("   ")],),
+                ],),
         body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[board, turnText]));
@@ -79,9 +92,7 @@ class Home extends StatelessWidget {
               Column(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: (() =>
-                      Navigator.of(context).pushNamed('/game'
-                      )),
+                    onTap: (() => Navigator.of(context).pushNamed('/game')),
                     child: Hero(
                         tag: "play",
                         child: Icon(
@@ -98,9 +109,7 @@ class Home extends StatelessWidget {
               Column(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: (() =>
-                      Navigator.of(context).pushNamed('/how2'
-                      )),
+                    onTap: (() => Navigator.of(context).pushNamed('/how2')),
                     child: Hero(
                       tag: "how2",
                       child: Icon(
@@ -128,31 +137,32 @@ class HowTo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black54,
+        backgroundColor: Colors.grey[300],
         appBar: AppBar(
-          title: Text("How To"),
+            title: Text("How To"),
             centerTitle: true,
-            leading: GestureDetector(child: Hero(
-              tag: "how",
-              child: Icon(
-                Icons.arrow_back_ios,
-                size: 30,
-              ),
-            ),
+            leading: GestureDetector(
+                child: Hero(
+                  tag: "how",
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    size: 30,
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
-                }
-            )
-        ),
+                })),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Hero(
-                tag: "how2",
-                child: Icon(
-                  Icons.help,
-                  size: 110,
+              GestureDetector(
+                child: Hero(
+                  tag: "how2",
+                  child: Icon(
+                    Icons.help,
+                    size: 110,
+                  ),
                 ),
               ),
             ],
@@ -162,11 +172,9 @@ class HowTo extends StatelessWidget {
 }
 
 class StandardLayout {
-
   final String infoText;
 
   StandardLayout({this.infoText});
-
 
   AppBar getAppBar() {
     return AppBar(
@@ -175,6 +183,7 @@ class StandardLayout {
     );
   }
 }
+
 class MyCustomRoute<T> extends MaterialPageRoute<T> {
   MyCustomRoute({WidgetBuilder builder, RouteSettings settings})
       : super(builder: builder, settings: settings);
