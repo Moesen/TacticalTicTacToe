@@ -73,8 +73,9 @@ class Home extends StatelessWidget {
         appBar: layout.getAppBar(),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
+              Row(),
               Column(
                 children: <Widget>[
                   GestureDetector(
@@ -113,7 +114,8 @@ class Home extends StatelessWidget {
                     style: Theme.of(context).textTheme.title,
                   )
                 ],
-              )
+              ),
+              Row(),
             ],
           ),
         ));
