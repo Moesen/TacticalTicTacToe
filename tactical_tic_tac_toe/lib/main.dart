@@ -8,7 +8,7 @@ void main() {
   runApp(MaterialApp(
     routes: <String, WidgetBuilder>{
       '/game': (BuildContext context) => new Game(),
-      '/how2': (BuildContext context) => new HowTo();
+      '/how2': (BuildContext context) => new HowTo()
     },
     title: 'Tactical Tic Tac Toe',
     home: Home(),
@@ -162,9 +162,11 @@ class HowTo extends StatelessWidget {
 }
 
 class StandardLayout {
+
   final String infoText;
 
   StandardLayout({this.infoText});
+
 
   AppBar getAppBar() {
     return AppBar(
@@ -173,7 +175,6 @@ class StandardLayout {
     );
   }
 }
-
 class MyCustomRoute<T> extends MaterialPageRoute<T> {
   MyCustomRoute({WidgetBuilder builder, RouteSettings settings})
       : super(builder: builder, settings: settings);

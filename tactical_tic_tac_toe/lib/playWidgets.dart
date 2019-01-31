@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'logic.dart';
-import 'presentation/custom_icons.dart';
 
 class Turn extends StatefulWidget {
   State state;
@@ -17,7 +16,7 @@ class Turn extends StatefulWidget {
 
 class _TurnState extends State<Turn> {
   static var logic = Logic(); //access to static logic variables
-  String txt = "Place a ";
+  String txt = "Turn: ";
 
   var myIcon = Icon(Icons.close, color: Colors.green, size: 30);
   var winnerDeclaration = Text("");
@@ -26,22 +25,21 @@ class _TurnState extends State<Turn> {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Container(
+    return Container(
         padding: EdgeInsets.all(20),
-      child: Column(children: <Widget>[
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        Text(txt,
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 30)
-        ),
-        myIcon
-      ],
-      ),
-      winnerDeclaration
-    ])
-          );
+        child: Column(children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(txt,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 30)),
+              myIcon
+            ],
+          ),
+          winnerDeclaration
+        ]));
   }
 
   void setTxt() {
@@ -53,13 +51,12 @@ class _TurnState extends State<Turn> {
     });
   }
 
-  void declareWinner(String winner){
+  void declareWinner(String winner) {
     setState(() {
-      winnerDeclaration  = Text(winner.toUpperCase() + " HAS WON THE GAME",
+      winnerDeclaration = Text(winner.toUpperCase() + " HAS WON THE GAME USING " ,
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontSize: 50)
-      );
+          style: TextStyle(fontSize: 50));
     });
   }
 }
